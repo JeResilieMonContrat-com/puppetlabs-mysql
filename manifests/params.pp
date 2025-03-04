@@ -91,9 +91,6 @@ class mysql::params {
       $root_group              = 'root'
       $mysql_group             = 'mysql'
       $socket                  = '/var/lib/mysql/mysql.sock'
-      $ssl_ca                  = '/etc/mysql/cacert.pem'
-      $ssl_cert                = '/etc/mysql/server-cert.pem'
-      $ssl_key                 = '/etc/mysql/server-key.pem'
       $tmpdir                  = '/tmp'
       $managed_dirs            = undef
       # mysql::bindings
@@ -136,10 +133,6 @@ class mysql::params {
       $mysql_group         = 'mysql'
       $server_service_name = 'mysql'
       $xtrabackup_package_name = 'xtrabackup'
-
-      $ssl_ca              = '/etc/mysql/cacert.pem'
-      $ssl_cert            = '/etc/mysql/server-cert.pem'
-      $ssl_key             = '/etc/mysql/server-key.pem'
       $tmpdir              = '/tmp'
       $managed_dirs        = undef
       # mysql::bindings
@@ -153,7 +146,7 @@ class mysql::params {
 
     'Debian': {
       if $facts['os']['name'] == 'Debian' or $facts['os']['name'] == 'Raspbian' or
-      ($facts['os']['name'] == 'Ubuntu' and versioncmp($facts['os']['release']['major'], '20.04') >= 0) {
+        ($facts['os']['name'] == 'Ubuntu' and versioncmp($facts['os']['release']['major'], '20.04') >= 0) {
         $provider = 'mariadb'
       } else {
         $provider = 'mysql'
@@ -181,33 +174,30 @@ class mysql::params {
       $root_group              = 'root'
       $mysql_group             = 'adm'
       $socket                  = '/var/run/mysqld/mysqld.sock'
-      $ssl_ca                  = '/etc/mysql/cacert.pem'
-      $ssl_cert                = '/etc/mysql/server-cert.pem'
-      $ssl_key                 = '/etc/mysql/server-key.pem'
       $tmpdir                  = '/tmp'
       $managed_dirs            = ['tmpdir','basedir','datadir','innodb_data_home_dir','innodb_log_group_home_dir','innodb_undo_directory','innodb_tmpdir']
 
       # mysql::bindings
       if ($facts['os']['name'] == 'Debian' and versioncmp($facts['os']['release']['full'], '10') >= 0) or
-      ($facts['os']['name'] == 'Ubuntu' and versioncmp($facts['os']['release']['full'], '20.04') >= 0) {
+        ($facts['os']['name'] == 'Ubuntu' and versioncmp($facts['os']['release']['full'], '20.04') >= 0) {
         $java_package_name   = 'libmariadb-java'
       } else {
         $java_package_name   = 'libmysql-java'
       }
       $perl_package_name   = 'libdbd-mysql-perl'
       if  ($facts['os']['name'] == 'Ubuntu' and versioncmp($facts['os']['release']['full'], '16.04') >= 0) or
-      ($facts['os']['name'] == 'Debian') {
+        ($facts['os']['name'] == 'Debian') {
         $php_package_name = 'php-mysql'
       } else {
         $php_package_name = 'php5-mysql'
       }
       if  ($facts['os']['name'] == 'Ubuntu' and versioncmp($facts['os']['release']['full'], '16.04') < 0) or
-      ($facts['os']['name'] == 'Ubuntu' and versioncmp($facts['os']['release']['full'], '20.04') >= 0) or
-      ($facts['os']['name'] == 'Debian') {
+        ($facts['os']['name'] == 'Ubuntu' and versioncmp($facts['os']['release']['full'], '20.04') >= 0) or
+        ($facts['os']['name'] == 'Debian') {
         $xtrabackup_package_name = 'percona-xtrabackup-24'
       }
       if ($facts['os']['name'] == 'Ubuntu' and versioncmp($facts['os']['release']['full'], '20.04') >= 0) or
-      ($facts['os']['name'] == 'Debian' and versioncmp($facts['os']['release']['full'], '11') >= 0) {
+        ($facts['os']['name'] == 'Debian' and versioncmp($facts['os']['release']['full'], '11') >= 0) {
         $python_package_name = 'python3-mysqldb'
       } else {
         $python_package_name = 'python-mysqldb'
@@ -241,9 +231,6 @@ class mysql::params {
       $mysql_group             = 'mysql'
       $server_service_name     = 'mysqld'
       $socket                  = '/var/lib/mysql/mysql.sock'
-      $ssl_ca                  = '/etc/mysql/cacert.pem'
-      $ssl_cert                = '/etc/mysql/server-cert.pem'
-      $ssl_key                 = '/etc/mysql/server-key.pem'
       $tmpdir                  = '/tmp'
       $managed_dirs            = undef
       # mysql::bindings
@@ -267,9 +254,6 @@ class mysql::params {
       $mysql_group         = 'mysql'
       $server_service_name = 'mysql'
       $socket              = '/run/mysqld/mysqld.sock'
-      $ssl_ca              = '/etc/mysql/cacert.pem'
-      $ssl_cert            = '/etc/mysql/server-cert.pem'
-      $ssl_key             = '/etc/mysql/server-key.pem'
       $tmpdir              = '/tmp'
       $managed_dirs        = undef
       # mysql::bindings
@@ -293,9 +277,6 @@ class mysql::params {
       $mysql_group         = 'mysql'
       $server_service_name = 'mysql-server'
       $socket              = '/var/db/mysql/mysql.sock'
-      $ssl_ca              = undef
-      $ssl_cert            = undef
-      $ssl_key             = undef
       $tmpdir              = '/tmp'
       $managed_dirs        = undef
       # mysql::bindings
@@ -322,9 +303,6 @@ class mysql::params {
       $mysql_group         = '_mysql'
       $server_service_name = 'mysqld'
       $socket              = '/var/run/mysql/mysql.sock'
-      $ssl_ca              = undef
-      $ssl_cert            = undef
-      $ssl_key             = undef
       $tmpdir              = '/tmp'
       $managed_dirs        = undef
       # mysql::bindings
@@ -352,9 +330,6 @@ class mysql::params {
           $mysql_group         = 'mysql'
           $server_service_name = 'mariadb'
           $socket              = '/run/mysqld/mysqld.sock'
-          $ssl_ca              = '/etc/mysql/cacert.pem'
-          $ssl_cert            = '/etc/mysql/server-cert.pem'
-          $ssl_key             = '/etc/mysql/server-key.pem'
           $tmpdir              = '/tmp'
           $managed_dirs        = undef
           $java_package_name   = undef
@@ -378,9 +353,6 @@ class mysql::params {
           $mysql_group         = 'mysql'
           $server_service_name = 'mysqld'
           $socket              = '/var/lib/mysql/mysql.sock'
-          $ssl_ca              = '/etc/mysql/cacert.pem'
-          $ssl_cert            = '/etc/mysql/server-cert.pem'
-          $ssl_key             = '/etc/mysql/server-key.pem'
           $tmpdir              = '/tmp'
           $managed_dirs        = undef
           # mysql::bindings
@@ -446,9 +418,6 @@ class mysql::params {
       'skip-external-locking' => true,
       'socket'                => $mysql::params::socket,
       'ssl'                   => false,
-      'ssl-ca'                => $mysql::params::ssl_ca,
-      'ssl-cert'              => $mysql::params::ssl_cert,
-      'ssl-key'               => $mysql::params::ssl_key,
       'ssl-disable'           => false,
       'thread_cache_size'     => '8',
       'thread_stack'          => '256K',
